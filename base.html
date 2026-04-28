@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Valve Inventory System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <nav>
+        <a href="/">Inventory</a> |
+        <a href="/add-item">Add Item</a> |
+        <a href="/transactions">Transactions</a>
+    </nav>
+    <hr>
+    {% block content %}{% endblock %}
+</body>
+</html>

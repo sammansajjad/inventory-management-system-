@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Stock Transactions</h2>
+
+{% if transactions %}
+<table>
+    <tr>
+        <th>ID</th>
+        <th>SKU</th>
+        <th>Type</th>
+        <th>Quantity</th>
+        <th>Date</th>
+    </tr>
+    {% for t in transactions %}
+    <tr>
+        <td>{{ t.id }}</td>
+        <td>{{ t.sku }}</td>
+        <td>{{ t.type }}</td>
+        <td>{{ t.quantity }}</td>
+        <td>{{ t.date }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<p>No transactions yet.</p>
+{% endif %}
+{% endblock %}

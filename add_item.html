@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Add New Valve</h2>
+<form method="POST">
+    <label>Sub-Type:</label>
+    <select id="sub_type" name="sub_type">
+        {% for s in sub_types %}
+        <option value="{{ s.id }}" data-code="{{ s.code }}">{{ s.name }}</option>
+        {% endfor %}
+    </select><br>
+
+    <label>Class:</label>
+    <select id="class" name="class">
+        {% for c in classes %}
+        <option value="{{ c.id }}">{{ c.value }}</option>
+        {% endfor %}
+    </select><br>
+
+    <label>Size:</label>
+    <select id="size" name="size">
+        {% for sz in sizes %}
+        <option value="{{ sz.id }}" data-code="{{ sz.code }}">{{ sz.size }}</option>
+        {% endfor %}
+    </select><br>
+
+    <label>End Type:</label>
+    <select id="end_type" name="end_type">
+        {% for e in end_types %}
+        <option value="{{ e.id }}" data-code="{{ e.code }}">{{ e.name }}</option>
+        {% endfor %}
+    </select><br>
+
+    <label>Face:</label>
+    <select id="face" name="face">
+        {% for f in faces %}
+        <option value="{{ f.id }}" data-code="{{ f.code }}">{{ f.name }}</option>
+        {% endfor %}
+    </select><br><br>
+
+    <label>Generated SKU:</label>
+    <input type="text" id="sku" name="sku" readonly><br><br>
+
+    <button type="submit">Add Item</button>
+</form>
+
+<script>
+function updateSKU() {
+    const sub  = document.getElementById("sub_type").selectedOptions[0].dataset.code;
+    const cls  = document.getElementById("class").selectedOptions[0].text;
+    const size = document.getElementById("size").selectedOptions[0].dataset.code;
+    const end  = document.getElementById("end_type").selectedOptions[0].dataset.code;
+    const face = document.getElementById("face").selectedOptions[0].dataset.code;
+    document.getElementById("sku").value = `V-${sub}-${cls}-${size}-${end}-${face}`;
+}
+document.querySelectorAll("select").forEach(s => s.addEventListener("change", updateSKU));
+updateSKU();
+</script>
+{% endblock %}
